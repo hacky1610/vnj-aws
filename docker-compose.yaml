@@ -1,0 +1,50 @@
+version: '3.6'
+
+services:
+    db:
+        image: mysql:5.7
+        volumes:
+          - data_db:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: mypassword
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+        networks:
+            - wpsite
+    phpmyadmin:
+        depends_on:
+          - db
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+          - '8080:80'
+        environment:
+          PMA_HOST: db
+          MYSQL_ROOT_PASSWORD: mypassword
+        networks:
+          - wpsite
+        volumes:
+          - ./uploads.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+    wordpress:
+        image: wordpress:latest
+        depends_on:
+            - db
+        ports:
+            - 8000:80
+        restart: always
+        environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_USER: wordpress
+            WORDPRESS_DB_PASSWORD: wordpress
+        volumes:
+            - .wordpress/plugins:/var/www/html/wp-content/plugins
+            - .wordpress/themes:/var/www/html/wp-content/themes
+            - .wordpress/uploads:/var/www/html/wp-content/uploads
+        networks:
+            - wpsite
+networks:
+    wpsite:
+volumes:
+    data_db:
