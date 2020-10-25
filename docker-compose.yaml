@@ -4,7 +4,7 @@ services:
     db:
         image: mysql:5.7
         volumes:
-          - data_db:/var/lib/mysql
+          - /mnt/efs/fs1/db:/var/lib/mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: mypassword
