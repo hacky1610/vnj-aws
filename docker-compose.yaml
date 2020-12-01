@@ -4,13 +4,13 @@ services:
     db:
         image: mysql:5.7
         volumes:
-          - /mnt/efs/fs1/db:/var/lib/mysql
+          - /mnt/volume1/db:/var/lib/mysql
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: mypassword
+            MYSQL_ROOT_PASSWORD: Imola1610!
             MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
+            MYSQL_USER: wordpressAdmin
+            MYSQL_PASSWORD: Hacky1610!
         networks:
             - wpsite
     phpmyadmin:
@@ -22,7 +22,7 @@ services:
           - '9000:80'
         environment:
           PMA_HOST: db
-          MYSQL_ROOT_PASSWORD: mypassword
+          MYSQL_ROOT_PASSWORD: Imola1610!
         networks:
           - wpsite
         volumes:
@@ -36,12 +36,12 @@ services:
         restart: always
         environment:
             WORDPRESS_DB_HOST: db:3306
-            WORDPRESS_DB_USER: wordpress
-            WORDPRESS_DB_PASSWORD: wordpress
+            WORDPRESS_DB_USER: wordpressAdmin
+            WORDPRESS_DB_PASSWORD: Hacky1610!
         volumes:
-            - /mnt/efs/fs1/wp/plugins:/var/www/html/wp-content/plugins
-            - /mnt/efs/fs1/wp/themes:/var/www/html/wp-content/themes
-            - /mnt/efs/fs1/wp/uploads:/var/www/html/wp-content/uploads
+            - /mnt/volume1/wp/plugins:/var/www/html/wp-content/plugins
+            - /mnt/volume1/wp/themes:/var/www/html/wp-content/themes
+            - /mnt/volume1/wp/uploads:/var/www/html/wp-content/uploads
         networks:
             - wpsite
 networks:
