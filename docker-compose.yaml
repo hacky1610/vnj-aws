@@ -4,7 +4,7 @@ services:
     db:
         image: mysql:5.7
         volumes:
-          - /mnt/HC_Volume_8257710/db:/var/lib/mysql
+          - /mnt/HC_Volume_8257710/wp-db:/var/lib/mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: Imola1610!
@@ -38,10 +38,14 @@ services:
             WORDPRESS_DB_HOST: db:3306
             WORDPRESS_DB_USER: wordpressAdmin
             WORDPRESS_DB_PASSWORD: Hacky1610!
+            WORDPRESS_CONFIG_EXTRA: |
+                define( 'WP_DEBUG', true );
+                define( 'WP_DEBUG_LOG', true );
+                define( 'WP_DEBUG_DISPLAY', false );
         volumes:
-            - /mnt/HC_Volume_8257710/wp/plugins:/var/www/html/wp-content/plugins
-            - /mnt/HC_Volume_8257710/wp/themes:/var/www/html/wp-content/themes
-            - /mnt/HC_Volume_8257710/wp/uploads:/var/www/html/wp-content/uploads
+            - ${PLUGINS}:/var/www/html/wp-content/plugins
+            - ${THEME}:/var/www/html/wp-content/themes
+            - ${UPLOADS}:/var/www/html/wp-content/uploads
             - ./uploads.ini:/var/www/html/php.ini
         networks:
             - wpsite
