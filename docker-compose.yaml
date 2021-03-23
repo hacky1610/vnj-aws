@@ -4,7 +4,7 @@ services:
     db:
         image: mysql:5.7
         volumes:
-          - /mnt/HC_Volume_8257710/wp-db:/var/lib/mysql
+          - ${DB}:/var/lib/mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: Imola1610!
