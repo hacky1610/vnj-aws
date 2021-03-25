@@ -26,7 +26,7 @@ services:
         networks:
           - wpsite
         volumes:
-          - ./uploads.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+          - ./uploads.ini:/usr/local/etc/php/php.ini
     wordpress:
         image: wordpress:latest
         depends_on:
