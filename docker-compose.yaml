@@ -23,6 +23,7 @@ services:
         environment:
           PMA_HOST: db
           MYSQL_ROOT_PASSWORD: Imola1610!
+          UPLOAD_LIMIT: 3000000000
         networks:
           - wpsite
         volumes:
