@@ -7,10 +7,10 @@ services:
           - ${DB}:/var/lib/mysql
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: Imola1610!
+            MYSQL_ROOT_PASSWORD:
             MYSQL_DATABASE: wordpress
             MYSQL_USER: wordpressAdmin
-            MYSQL_PASSWORD: Hacky1610!
+            MYSQL_PASSWORD:
         networks:
             - wpsite
     phpmyadmin:
@@ -38,7 +38,7 @@ services:
         environment:
             WORDPRESS_DB_HOST: db:3306
             WORDPRESS_DB_USER: wordpressAdmin
-            WORDPRESS_DB_PASSWORD: Hacky1610!
+            WORDPRESS_DB_PASSWORD:
             WORDPRESS_CONFIG_EXTRA: |
                 define( 'WP_DEBUG', true );
                 define( 'WP_DEBUG_LOG', true );
