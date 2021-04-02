@@ -29,7 +29,7 @@ services:
         volumes:
           - ./uploads.ini:/usr/local/etc/php/php.ini
     wordpress:
-        image: wordpress:5.6
+        image: wordpress:5.7
         depends_on:
             - db
         ports:
